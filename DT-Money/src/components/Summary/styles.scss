@@ -1,0 +1,44 @@
+.summary-container {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: -5rem;
+
+  &__card {
+    background-color: $_gray-600;
+    padding: 1.5rem 1.5rem 2rem 1.5rem;
+    border-radius: 6px;
+
+    strong {
+      font-weight: 700;
+      font-size: 2rem;
+    }
+  }
+
+  &__card--total {
+    background-color: $_green-700;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 12px;
+  }
+
+  &__icon {
+    width: 2rem;
+    color: $_white;
+  }
+
+  &__icon--income {
+    color: $_green-300;
+  }
+
+  &__icon--outcome {
+    color: $_red-300;
+  }
+}

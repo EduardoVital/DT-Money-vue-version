@@ -1,0 +1,29 @@
+.header-container {
+  background: $_gray-900;
+  padding: 2.5rem 0 7.5rem;
+
+  &__content {
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    button {
+      background-color: $_green-500;
+      border: none;
+      outline: none;
+      padding: 0.75rem 1.25rem;
+      border-radius: 6px;
+      color: $_white;
+      cursor: pointer;
+      font-weight: bold;
+      &:hover {
+        background: $_green-700;
+        transition: background-color 0.2s;
+      }
+    }
+  }
+}

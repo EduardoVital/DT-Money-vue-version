@@ -1,0 +1,38 @@
+.transactions-container__table {
+  margin-top: 1.5rem;
+  margin-bottom: 2.5rem;
+
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 0.5rem;
+    margin-top: 1.5rem;
+
+    th,td {
+      padding: 1.25rem 2rem;
+      background: $_gray-700;
+      text-align: center;
+      
+      &:first-child {
+        border-top-left-radius: 6px;
+        border-bottom-left-radius: 6px;
+      }
+      &:last-child {
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+      }
+    }
+
+    th {
+      background: $_green-700;
+    }
+  }
+
+  &--income {
+    color: $_green-300;
+  }
+
+  &--outcome {
+    color: $_red-300;
+  }
+}

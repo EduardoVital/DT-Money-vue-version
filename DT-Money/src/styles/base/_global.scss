@@ -1,0 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $_gray-800;
+  color: $_gray-100;
+  -webkit-font-smoothing: antialiased;
+}
+
+body, input, textarea, button {
+  font: 400 1rem Roboto, sans-serif;
+}
