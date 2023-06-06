@@ -2,25 +2,6 @@
   display: flex;
   gap: 1rem;
 
-  input {
-    flex: 1;
-    border-radius: 6px;
-    padding: 1rem;
-    border: none;
-    background-color: $_gray-900;
-    color: $_gray-300;
-    outline: none;
-
-    &::placeholder {
-      color: $_gray-500;
-    }
-
-  }
-  
-  input:focus {
-    border: 1px solid $_green-300;
-  }
-
   button {
     display: flex;
     align-items: center;

@@ -1,0 +1,63 @@
+.create-transaction-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  margin-top: 4rem;
+  margin-bottom: 4rem;;
+
+  &__form {
+    margin-top: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  &__types {
+    display: flex;
+    gap: 1rem;
+
+    div {
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    &--income {
+      background-color: $_green-700;
+    }
+
+    &--outcome {
+      background-color: $_red-700;
+    }
+
+    &--default {
+      background-color: $_gray-700;
+    }
+
+    &--income,
+    &--outcome {
+      svg {
+        color: $_white;
+      }
+    }
+  }
+  
+  &__icon-income,
+  &__icon-outcome {
+    width: 1rem;
+    margin-right: 10px;
+  }
+
+  &__icon-outcome {
+    color: $_red-300;
+  }
+
+  &__icon-income {
+    color: $_green-300;
+  }
+}
