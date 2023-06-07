@@ -1,11 +1,33 @@
 <script setup lang="ts">
-import tableData from "../../../table.json"
 // import { dateFormatter, priceFormatter } from "../../../utils/formatters"
-import { ref } from 'vue';
+import { getTransactions } from "../../../services/transactions/index"
+import { ref, onMounted} from 'vue';
 import type { Ref } from 'vue';
+
+interface Table {
+  id: number,
+  description: string,
+  type: string,
+  category: string,
+  price: number,
+  createdAt: string
+}
 
 const isCheckedAll: Ref<boolean> = ref(false);
 const isSelectedAll: Ref<number[]> = ref([]);
+const tableData: Ref<Table[]> = ref([]) 
+
+
+
+const fetchData = () => {
+  getTransactions().then(response => {
+    tableData.value = response?.data
+  })
+}
+
+onMounted(() => {
+  fetchData();
+})
 
 const priceFormatter = new Intl.NumberFormat('pt-BR', {
   style: 'currency',
@@ -21,7 +43,7 @@ const typeOfTransactions = (type: string) => {
 const checkAllItems = () => {
   isCheckedAll.value = !isCheckedAll.value
 
-  isCheckedAll.value ?  isSelectedAll.value = tableData.transactions.map(item => item.id) : isSelectedAll.value = []
+  isCheckedAll.value ?  isSelectedAll.value = tableData.value.map(item => item.id) : isSelectedAll.value = []
 }
 
 // const checkItem = () => {
@@ -44,7 +66,7 @@ const checkAllItems = () => {
           <th>Data</th>
         </tr>
       </thead>
-      <tbody v-for="transactions in tableData.transactions" :key="transactions.id" >
+      <tbody v-for="transactions in tableData" :key="transactions.id" >
         <tr>
           <td><input type="checkbox" v-model="isSelectedAll" :value="transactions.id"></td>
           <td>{{transactions.description}}</td>
