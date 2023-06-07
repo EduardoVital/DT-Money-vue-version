@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ArrowUpIcon, ArrowDownIcon } from "@heroicons/vue/24/solid"
-
-import { ref, watch } from 'vue';
+import useVuelidate from "@vuelidate/core";
+import { required } from "@vuelidate/validators";
+import { ref } from 'vue';
 import type { Ref } from 'vue'
 
 interface Form {
@@ -18,27 +19,21 @@ const formData: Ref<Form> = ref({
   type: ''
 })
 
-const isDescriptionEmpty: Ref<boolean> = ref(false);
-const isPriceEmpty: Ref<boolean> = ref(false);
-const isCategoryEmpty: Ref<boolean> = ref(false);
-const isTypeEmpty: Ref<boolean> = ref(false);
+const rules = {
+  description: { required },
+  price: { required },
+  category: { required },
+  type: { required }
+}
 
-watch(
-  formData,
-  () => {
-    if (formData.value.description !== '') isDescriptionEmpty.value = false;
-    if (formData.value.price !== '') isPriceEmpty.value = false;
-    if (formData.value.category !== '') isCategoryEmpty.value = false;
-    if (formData.value.type !== '') isTypeEmpty.value = false;
-  },
-  { deep: true },
-);
+const v$ = useVuelidate(rules, formData)
 
-const submitForm = () => {
-  if (!formData.value.description) isDescriptionEmpty.value = true;
-  if (!formData.value.price) isPriceEmpty.value = true;
-  if (!formData.value.category) isCategoryEmpty.value = true;
-  if (!formData.value.type) isTypeEmpty.value = true;
+const submitForm = async () => {
+  const result = await v$.value.$validate();
+  
+  if (result) {
+    console.log('Success')
+  }
 }
 
 const selectedType = (value: string) => {
@@ -51,10 +46,10 @@ const selectedType = (value: string) => {
   <section class="create-transaction-container">
     <h1>Nova transação</h1>
 
-    <form class="create-transaction-container__form" >
-      <input :class="isDescriptionEmpty ? 'create-transaction-container__form--error' : ''" type="text" placeholder="Descrição" v-model="formData.description">
-      <input :class="isPriceEmpty ? 'create-transaction-container__form--error' : ''" type="text" placeholder="Preço" v-model="formData.price">
-      <input :class="isCategoryEmpty ? 'create-transaction-container__form--error' : ''" type="text" placeholder="Categoria" v-model="formData.category">
+    <form class="create-transaction-container__form" @submit.prevent="submitForm">
+      <input :class="v$.description.$error ? 'create-transaction-container__form--error' : ''" type="text" placeholder="Descrição" v-model="formData.description">
+      <input :class="v$.price.$error ? 'create-transaction-container__form--error' : ''" type="text" placeholder="Preço" v-model="formData.price">
+      <input :class="v$.category.$error ? 'create-transaction-container__form--error' : ''" type="text" placeholder="Categoria" v-model="formData.category">
 
       <div class="create-transaction-container__types">
         <div :class="formData.type === 'income' ? 'create-transaction-container__types--income' : 'create-transaction-container__types--default'" @click.prevent="selectedType('income')">
@@ -66,9 +61,9 @@ const selectedType = (value: string) => {
           <p>Saída</p>
         </div>
       </div>
-      <span v-if="isTypeEmpty">* Necessário escolher um tipo</span>
+      <span v-if="v$.type.$error">* Necessário escolher um tipo</span>
 
-      <button @click.prevent="submitForm" >Cadastrar</button>
+      <button type="submit">Cadastrar</button>
 
     </form>
   </section>
