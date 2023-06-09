@@ -7,3 +7,10 @@ export type Table = {
   createdAt: string
 }
 
+export type Form = {
+  description: string,
+  price: number | null,
+  category: string,
+  type: string
+}
+

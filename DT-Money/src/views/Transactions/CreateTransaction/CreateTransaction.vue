@@ -6,19 +6,11 @@ import { required } from "@vuelidate/validators";
 import { ref } from 'vue';
 import type { Ref } from 'vue'
 import router from '@/router';
-import { Table } from '../../../types/index'
-
-interface Form {
-  description: string,
-  price: string,
-  category: string,
-  type: string
-}
-
+import { Form } from '../../../types/index'
 
 const formData: Ref<Form> = ref({
   description: '',
-  price: '',
+  price: null,
   category: '',
   type: ''
 })
@@ -61,7 +53,7 @@ const goBackHome = () => {
 
     <form class="create-transaction-container__form" @submit.prevent="submitForm">
       <input :class="v$.description.$error ? 'create-transaction-container__form--error' : ''" type="text" placeholder="Descrição" v-model="formData.description">
-      <input :class="v$.price.$error ? 'create-transaction-container__form--error' : ''" type="text" placeholder="Preço" v-model="formData.price">
+      <input :class="v$.price.$error ? 'create-transaction-container__form--error' : ''" type="number" placeholder="Preço" v-model="formData.price">
       <input :class="v$.category.$error ? 'create-transaction-container__form--error' : ''" type="text" placeholder="Categoria" v-model="formData.category">
 
       <div class="create-transaction-container__types">
