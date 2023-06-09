@@ -8,11 +8,12 @@ export const useTransactions = defineStore({
     tableData: [] as Table[]
   }),
   actions: {
-    fetchTableData(): void {
+    getTransactionsData(): void {
       getTransactions().then(({ data }: {data: Table[]}) => {
         this.tableData = data
       })
     }
+    // crea
   },
   getters: {
     getTableData: (state) => state.tableData

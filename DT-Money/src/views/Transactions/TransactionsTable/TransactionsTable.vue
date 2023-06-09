@@ -13,7 +13,7 @@ const isSelectedAll: Ref<number[]> = ref([]);
 const tableData = computed((): Table[] => transactions.getTableData)
 
 onMounted(() => {
-  transactions.fetchTableData();
+  transactions.getTransactionsData();
 })
 
 watch(
