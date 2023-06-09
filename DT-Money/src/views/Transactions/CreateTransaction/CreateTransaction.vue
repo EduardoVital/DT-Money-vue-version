@@ -8,6 +8,13 @@ import type { Ref } from 'vue'
 import router from '@/router';
 import { Table } from '../../../types/index'
 
+interface Form {
+  description: string,
+  price: string,
+  category: string,
+  type: string
+}
+
 
 const formData: Ref<Form> = ref({
   description: '',
