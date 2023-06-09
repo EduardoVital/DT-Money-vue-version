@@ -39,6 +39,46 @@
       "type": "outcome",
       "createdAt": "2023-01-21T15:25:33.293Z",
       "id": 5
+    },
+    {
+      "description": "Bolo",
+      "price": 10,
+      "category": "Comida",
+      "type": "outcome",
+      "createdAt": "2023-06-09T13:33:03.871Z",
+      "id": 6
+    },
+    {
+      "description": "Freela",
+      "price": 10000,
+      "category": "Trabalho",
+      "type": "income",
+      "createdAt": "2023-06-09T13:38:12.665Z",
+      "id": 7
+    },
+    {
+      "description": "Freela",
+      "price": 10000,
+      "category": "Trabalho",
+      "type": "income",
+      "createdAt": "2023-06-09T13:38:35.281Z",
+      "id": 8
+    },
+    {
+      "description": "Roupa",
+      "price": 150,
+      "category": "Vestuário",
+      "type": "income",
+      "createdAt": "2023-06-09T13:40:07.113Z",
+      "id": 9
+    },
+    {
+      "description": "Ingresso",
+      "price": 55,
+      "category": "Futebol",
+      "type": "outcome",
+      "createdAt": "2023-06-09T13:45:17.448Z",
+      "id": 10
     }
   ]
 }

@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
-import { getTransactions } from "../../src/services/transactions/index"
-import { Table } from '@/types'
+import { getTransactions, putTransactions } from "../../src/services/transactions/index"
+import { Table, Form } from '@/types'
+import router from '@/router';
 
 export const useTransactions = defineStore({
   id: 'transactions',
@@ -12,8 +13,16 @@ export const useTransactions = defineStore({
       getTransactions().then(({ data }: {data: Table[]}) => {
         this.tableData = data
       })
+    },
+    createTransaction(form: Form ) {
+      putTransactions(form).then(response => {
+        const status = response?.status;
+        if (status === 201) {
+          this.getTransactionsData();
+          router.push('/');
+        }
+      })
     }
-    // crea
   },
   getters: {
     getTableData: (state) => state.tableData

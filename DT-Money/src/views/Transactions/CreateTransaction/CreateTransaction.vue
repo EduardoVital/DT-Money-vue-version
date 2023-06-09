@@ -7,6 +7,9 @@ import { ref } from 'vue';
 import type { Ref } from 'vue'
 import router from '@/router';
 import { Form } from '../../../types/index'
+import { useTransactions } from "@/stores/transactions";
+
+const transactions = useTransactions();
 
 const formData: Ref<Form> = ref({
   description: '',
@@ -25,12 +28,11 @@ const rules = {
 const v$ = useVuelidate(rules, formData)
 
 const submitForm = async () => {
-  const date = new Date().toISOString();
-  console.log(date)
   const result = await v$.value.$validate();
   
   if (result) {
-    // console.log('Success')
+    const { description, price, category, type } = formData.value;
+    transactions.createTransaction({description, price, category, type})
   }
 }
 
