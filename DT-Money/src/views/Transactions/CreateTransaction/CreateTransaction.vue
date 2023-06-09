@@ -6,13 +6,8 @@ import { required } from "@vuelidate/validators";
 import { ref } from 'vue';
 import type { Ref } from 'vue'
 import router from '@/router';
+import { Table } from '../../../types/index'
 
-interface Form {
-  description: string,
-  price: string,
-  category: string,
-  type: string
-}
 
 const formData: Ref<Form> = ref({
   description: '',
@@ -31,10 +26,12 @@ const rules = {
 const v$ = useVuelidate(rules, formData)
 
 const submitForm = async () => {
+  const date = new Date().toISOString();
+  console.log(date)
   const result = await v$.value.$validate();
   
   if (result) {
-    console.log('Success')
+    // console.log('Success')
   }
 }
 

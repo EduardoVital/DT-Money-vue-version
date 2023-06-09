@@ -1,32 +1,19 @@
 <script setup lang="ts">
-// import { dateFormatter, priceFormatter } from "../../../utils/formatters"
-import { getTransactions } from "../../../services/transactions/index"
-import { ref, onMounted, watch } from 'vue';
+import { dateFormatter, priceFormatter } from "../../../utils/formatters"
+import { ref, onMounted, watch, computed } from 'vue';
 import type { Ref } from 'vue';
+import { useTransactions } from '../../../stores/transactions';
+import { Table } from '../../../types/index'
 
-interface Table {
-  id: number,
-  description: string,
-  type: string,
-  category: string,
-  price: number,
-  createdAt: string
-}
+const transactions = useTransactions();
 
 const isCheckedAll: Ref<boolean> = ref(false);
 const isSelectedAll: Ref<number[]> = ref([]);
-const tableData: Ref<Table[]> = ref([]) 
 
-
-
-const fetchData = () => {
-  getTransactions().then(response => {
-    tableData.value = response?.data
-  })
-}
+const tableData = computed((): Table[] => transactions.getTableData)
 
 onMounted(() => {
-  fetchData();
+  transactions.fetchTableData();
 })
 
 watch(
@@ -36,13 +23,6 @@ watch(
   },
   { deep: true },
 );
-
-const priceFormatter = new Intl.NumberFormat('pt-BR', {
-  style: 'currency',
-  currency: 'BRL',
-})
-
-const dateFormatter = new Intl.DateTimeFormat('pt-BR')
 
 const typeOfTransactions = (type: string) => {
   return type === "income" ? "transactions-container__table--income" : "transactions-container__table--outcome"
