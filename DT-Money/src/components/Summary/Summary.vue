@@ -1,5 +1,29 @@
 <script setup lang="ts">
 import { ArrowUpIcon, ArrowDownIcon, CurrencyDollarIcon } from "@heroicons/vue/24/solid"
+import { useTransactions } from '../../stores/transactions';
+import { ref, onMounted, watch, computed } from 'vue';
+import type { Ref } from 'vue';
+import { priceFormatter } from "../../utils/formatters"
+
+interface SummaryData {
+  income: number,
+  outcome: number,
+  total: number,
+}
+
+const transactions = useTransactions();
+
+const summary: Ref<SummaryData> = ref({
+  income: 0,
+  outcome: 0,
+  total: 0,
+})
+
+onMounted(() => {
+  console.log(transactions.getSummaryData)
+})
+
+
 </script>
 
 <template>
@@ -9,7 +33,7 @@ import { ArrowUpIcon, ArrowDownIcon, CurrencyDollarIcon } from "@heroicons/vue/2
         <p>Entradas</p>
         <arrow-up-icon class="summary-container__icon summary-container__icon--income"/>
       </header>
-      <strong>R$ 17.400,00</strong>
+      <strong>{{ priceFormatter.format(summary.income) }}</strong>
     </div>
 
     <div class="summary-container__card">
@@ -17,7 +41,7 @@ import { ArrowUpIcon, ArrowDownIcon, CurrencyDollarIcon } from "@heroicons/vue/2
         <p>Entradas</p>
         <arrow-down-icon class="summary-container__icon summary-container__icon--outcome"/>
       </header>
-      <strong>R$ 17.400,00</strong>
+      <strong>{{ priceFormatter.format(summary.outcome) }}</strong>
     </div>
 
     <div class="summary-container__card summary-container__card--total">
@@ -25,7 +49,7 @@ import { ArrowUpIcon, ArrowDownIcon, CurrencyDollarIcon } from "@heroicons/vue/2
         <p>Entradas</p>
         <currency-dollar-icon class="summary-container__icon"/>
       </header>
-      <strong>R$ 17.400,00</strong>
+      <strong>{{ priceFormatter.format(summary.total) }}</strong>
     </div>
   </section>
 </template>

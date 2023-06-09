@@ -6,7 +6,12 @@ import router from '@/router';
 export const useTransactions = defineStore({
   id: 'transactions',
   state: () => ({
-    tableData: [] as Table[]
+    tableData: [] as Table[],
+    summary: {
+      income: 0,
+      outcome: 0,
+      total: 0,
+    }
   }),
   actions: {
     getTransactionsData(): void {
@@ -22,9 +27,10 @@ export const useTransactions = defineStore({
           router.push('/');
         }
       })
-    }
+    },
   },
   getters: {
-    getTableData: (state) => state.tableData
+    getTableData: (state) => state.tableData,
+    getSummaryData: (state) => state.tableData
   }
 })
