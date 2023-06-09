@@ -6,13 +6,23 @@ const api = axios.create({
   baseURL: URL,
 })
 
-export const getTransactions = () => {
-  return api.get('transactions', {
+export const getTransactions = async () => {
+  return await api.get('transactions', {
     params: {
       _sort: 'createdAt',
       _order: 'desc',
       _page: 1,
-      _limit: 5,
-    }
+      _limit: 10,
+    },
   })
+  // return api.get('transactions', {
+  //   params: {
+  //     _sort: 'createdAt',
+  //     _order: 'desc',
+  //     _page: 1,
+  //     // _limit: 5,
+  //   }
+  // })
 }
+
+

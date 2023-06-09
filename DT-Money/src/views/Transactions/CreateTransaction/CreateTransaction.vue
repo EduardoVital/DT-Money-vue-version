@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import { ArrowUpIcon, ArrowDownIcon } from "@heroicons/vue/24/solid"
+import { ArrowUpIcon, ArrowDownIcon, ArrowLeftIcon } from "@heroicons/vue/24/solid"
+
 import useVuelidate from "@vuelidate/core";
 import { required } from "@vuelidate/validators";
 import { ref } from 'vue';
 import type { Ref } from 'vue'
+import router from '@/router';
 
 interface Form {
   description: string,
@@ -40,11 +42,18 @@ const selectedType = (value: string) => {
   formData.value.type = value
 }
 
+const goBackHome = () => {
+  router.push('/');
+}
+
 </script>
 
 <template>
   <section class="create-transaction-container">
-    <h1>Nova transação</h1>
+    <div class="create-transaction-container__header">
+      <arrow-left-icon class="create-transaction-container__icon-go-back"  @click="goBackHome" />
+      <h1>Nova transação</h1>
+    </div>
 
     <form class="create-transaction-container__form" @submit.prevent="submitForm">
       <input :class="v$.description.$error ? 'create-transaction-container__form--error' : ''" type="text" placeholder="Descrição" v-model="formData.description">

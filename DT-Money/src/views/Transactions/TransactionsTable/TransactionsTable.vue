@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // import { dateFormatter, priceFormatter } from "../../../utils/formatters"
 import { getTransactions } from "../../../services/transactions/index"
-import { ref, onMounted} from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import type { Ref } from 'vue';
 
 interface Table {
@@ -29,6 +29,14 @@ onMounted(() => {
   fetchData();
 })
 
+watch(
+  isSelectedAll,
+  () => {
+    isCheckedAll.value = isSelectedAll.value.length === tableData.value.length
+  },
+  { deep: true },
+);
+
 const priceFormatter = new Intl.NumberFormat('pt-BR', {
   style: 'currency',
   currency: 'BRL',
@@ -45,12 +53,6 @@ const checkAllItems = () => {
 
   isCheckedAll.value ?  isSelectedAll.value = tableData.value.map(item => item.id) : isSelectedAll.value = []
 }
-
-// const checkItem = () => {
-//   if (isSelectedAll.value.length ===  tableData.transactions.length -1) {
-//     isCheckedAll.value = true
-//   }
-// }
 
 </script>
 
