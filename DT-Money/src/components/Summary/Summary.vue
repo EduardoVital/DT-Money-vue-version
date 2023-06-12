@@ -1,28 +1,12 @@
 <script setup lang="ts">
 import { ArrowUpIcon, ArrowDownIcon, CurrencyDollarIcon } from "@heroicons/vue/24/solid"
 import { useTransactions } from '../../stores/transactions';
-import { ref, onMounted, watch, computed } from 'vue';
-import type { Ref } from 'vue';
+import { computed } from 'vue';
 import { priceFormatter } from "../../utils/formatters"
-
-interface SummaryData {
-  income: number,
-  outcome: number,
-  total: number,
-}
 
 const transactions = useTransactions();
 
-const summary: Ref<SummaryData> = ref({
-  income: 0,
-  outcome: 0,
-  total: 0,
-})
-
-onMounted(() => {
-  console.log(transactions.getSummaryData)
-})
-
+const summary = computed(() => transactions.getSummaryData)
 
 </script>
 
