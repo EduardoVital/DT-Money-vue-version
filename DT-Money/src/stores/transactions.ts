@@ -8,9 +8,9 @@ export const useTransactions = defineStore({
   state: () => ({
     tableData: [] as Table[],
     summary: {
-      income: 0,
-      outcome: 0,
-      total: 0,
+      income: 0 as number,
+      outcome: 0 as number,
+      total: 0 as number,
     }
   }),
   actions: {
@@ -33,15 +33,11 @@ export const useTransactions = defineStore({
       return data.reduce(
         (acc: SummaryData, transaction: Table ) => {
           if (transaction.type === 'income') {
-            acc.income += transaction.price
-            acc.total += transaction.price
-            this.summary.income = acc.income
-            this.summary.total = acc.total
+            this.summary.income = acc.income += transaction.price
+            this.summary.total = acc.total += transaction.price
           } else {
-            acc.outcome += transaction.price
-            acc.total -= transaction.price
-            this.summary.outcome = acc.outcome
-            this.summary.total = acc.total
+            this.summary.outcome =  acc.outcome += transaction.price
+            this.summary.total = acc.total -= transaction.price
           }
 
           return acc
