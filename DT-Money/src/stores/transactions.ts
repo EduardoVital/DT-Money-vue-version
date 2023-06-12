@@ -48,7 +48,7 @@ export const useTransactions = defineStore({
           total: 0,
         },
       )
-    }
+    },
   },
   getters: {
     getTableData: (state) => state.tableData,

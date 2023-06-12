@@ -4,6 +4,7 @@ import { ref, onMounted, watch, computed } from 'vue';
 import type { Ref } from 'vue';
 import { useTransactions } from '../../../stores/transactions';
 import { Table } from '../../../types/index'
+import router from '@/router'
 
 const transactions = useTransactions();
 
@@ -34,6 +35,16 @@ const checkAllItems = () => {
   isCheckedAll.value ?  isSelectedAll.value = tableData.value.map(item => item.id) : isSelectedAll.value = []
 }
 
+const editTransaction = (id: number) => {
+  console.log(id)
+  router.push({
+    name: 'edit-transaction',
+    params: {
+      id,
+    }
+  })
+}
+
 </script>
 
 <template>
@@ -49,7 +60,7 @@ const checkAllItems = () => {
         </tr>
       </thead>
       <tbody v-for="transactions in tableData" :key="transactions.id" >
-        <tr>
+        <tr @click="editTransaction(transactions.id)">
           <td><input type="checkbox" v-model="isSelectedAll" :value="transactions.id"></td>
           <td>{{transactions.description}}</td>
           <td :class="typeOfTransactions(transactions.type)">
