@@ -36,7 +36,6 @@ const checkAllItems = () => {
 }
 
 const editTransaction = (id: number) => {
-  console.log(id)
   router.push({
     name: 'edit-transaction',
     params: {

@@ -3,12 +3,15 @@ import { ArrowUpIcon, ArrowDownIcon, ArrowLeftIcon } from "@heroicons/vue/24/sol
 
 import useVuelidate from "@vuelidate/core";
 import { required } from "@vuelidate/validators";
-import { ref } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import type { Ref } from 'vue'
 import router from '@/router';
 import { Form } from '../../../types/index'
 import { useTransactions } from "@/stores/transactions";
+import { useRoute } from 'vue-router';
+import { getTransaction } from "@/services/transactions";
 
+const route = useRoute();
 const transactions = useTransactions();
 
 const formData: Ref<Form> = ref({
@@ -27,6 +30,12 @@ const rules = {
 
 const v$ = useVuelidate(rules, formData)
 
+const buttonText = computed(() => route.params.id ? 'Editar' : 'Cadastrar')
+
+onMounted(() => {
+  if (route.params.id) fetchTransaction();
+})
+
 const submitForm = async () => {
   const result = await v$.value.$validate();
   
@@ -42,6 +51,17 @@ const selectedType = (value: string) => {
 
 const goBackHome = () => {
   router.push('/');
+}
+
+const fetchTransaction = () => {
+  const id = route.params.id.toString()
+  getTransaction(id).then(response => {
+    const { category, price, description, type } = response?.data;
+    formData.value.category = category
+    formData.value.price = price
+    formData.value.description = description
+    formData.value.type = type
+  })
 }
 
 </script>
@@ -70,7 +90,7 @@ const goBackHome = () => {
       </div>
       <span v-if="v$.type.$error">* Necessário escolher um tipo</span>
 
-      <button type="submit">Cadastrar</button>
+      <button type="submit">{{ buttonText }}</button>
 
     </form>
   </section>

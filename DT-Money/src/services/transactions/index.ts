@@ -30,4 +30,12 @@ export const putTransactions = async (form: Form ) => {
   })
 }
 
+export const getTransaction = async (id: string) => {
+  return await api.get(`transactions/${id}`, {
+    params: {
+      id,
+    },
+  })
+}
+
 
