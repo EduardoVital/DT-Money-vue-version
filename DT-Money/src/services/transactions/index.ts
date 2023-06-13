@@ -38,4 +38,16 @@ export const getTransaction = async (id: string) => {
   })
 }
 
+export const editTransaction = async (form: Form, id: string ) => {
+  const { description, price, category, type } = form
+
+  return await api.put(`transactions/${id}`, {
+    description,
+    price,
+    category,
+    type,
+    createdAt: new Date(),
+  })
+}
+
 

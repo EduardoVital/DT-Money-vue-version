@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { getTransactions, putTransactions } from "../../src/services/transactions/index"
+import { getTransactions, putTransactions, editTransaction } from "../../src/services/transactions/index"
 import { Table, Form, SummaryData } from '@/types'
 import router from '@/router';
 
@@ -24,6 +24,16 @@ export const useTransactions = defineStore({
       putTransactions(form).then(response => {
         const status = response?.status;
         if (status === 201) {
+          this.getTransactionsData();
+          router.push('/');
+        }
+      })
+    },
+    editTransaction(form: Form, id: string) {
+      editTransaction(form, id).then(response => {
+        console.log(response)
+        const status = response?.status;
+        if (status === 200) {
           this.getTransactionsData();
           router.push('/');
         }

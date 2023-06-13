@@ -21,6 +21,8 @@ const formData: Ref<Form> = ref({
   type: ''
 })
 
+const id: Ref<string> = ref('')
+
 const rules = {
   description: { required },
   price: { required },
@@ -33,7 +35,10 @@ const v$ = useVuelidate(rules, formData)
 const buttonText = computed(() => route.params.id ? 'Editar' : 'Cadastrar')
 
 onMounted(() => {
-  if (route.params.id) fetchTransaction();
+  if (route.params.id) {
+    id.value = route.params.id.toString()
+    fetchTransaction(id.value);
+  }
 })
 
 const submitForm = async () => {
@@ -41,7 +46,8 @@ const submitForm = async () => {
   
   if (result) {
     const { description, price, category, type } = formData.value;
-    transactions.createTransaction({description, price, category, type})
+    
+   id.value ? transactions.editTransaction({description, price, category, type}, id.value) : transactions.createTransaction({description, price, category, type})
   }
 }
 
@@ -53,8 +59,7 @@ const goBackHome = () => {
   router.push('/');
 }
 
-const fetchTransaction = () => {
-  const id = route.params.id.toString()
+const fetchTransaction = (id: string) => {
   getTransaction(id).then(response => {
     const { category, price, description, type } = response?.data;
     formData.value.category = category

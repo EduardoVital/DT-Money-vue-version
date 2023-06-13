@@ -22,7 +22,7 @@ const summary = computed(() => transactions.getSummaryData)
 
     <div class="summary-container__card">
       <header class="summary-container__header">
-        <p>Entradas</p>
+        <p>Saída</p>
         <arrow-down-icon class="summary-container__icon summary-container__icon--outcome"/>
       </header>
       <strong>{{ priceFormatter.format(summary.outcome) }}</strong>
@@ -30,7 +30,7 @@ const summary = computed(() => transactions.getSummaryData)
 
     <div class="summary-container__card summary-container__card--total">
       <header class="summary-container__header">
-        <p>Entradas</p>
+        <p>Total</p>
         <currency-dollar-icon class="summary-container__icon"/>
       </header>
       <strong>{{ priceFormatter.format(summary.total) }}</strong>
