@@ -75,4 +75,10 @@
     transform: rotate(45deg) translate(-50%, -50%);
     z-index: 2;
   }
+
+  .transactions-container__edit-icon {
+    width: 1.5rem;
+    color: $_yellow-300;
+    cursor: pointer;
+  }
 }

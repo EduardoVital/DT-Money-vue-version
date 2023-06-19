@@ -17,14 +17,6 @@
       "createdAt": "2022-07-29T19:30:44.505Z"
     },
     {
-      "id": 3,
-      "description": "Pastel",
-      "type": "outcome",
-      "category": "Alimentação",
-      "price": 45,
-      "createdAt": "2022-07-29T19:30:44.505Z"
-    },
-    {
       "description": "Freela",
       "price": 10000,
       "category": "Projetos",
@@ -65,28 +57,12 @@
       "id": 8
     },
     {
-      "description": "Roupa",
-      "price": 150,
-      "category": "Vestuário",
-      "type": "income",
-      "createdAt": "2023-06-09T13:40:07.113Z",
-      "id": 9
-    },
-    {
       "description": "Crossfit",
       "price": 210,
       "category": "Academia",
       "type": "outcome",
       "createdAt": "2023-06-13T18:53:51.238Z",
       "id": 10
-    },
-    {
-      "description": "Partida de futebol",
-      "price": 100,
-      "category": "Futebol",
-      "type": "outcome",
-      "createdAt": "2023-06-13T18:58:03.211Z",
-      "id": 11
     }
   ]
 }

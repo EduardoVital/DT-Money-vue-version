@@ -50,4 +50,10 @@ export const editTransaction = async (form: Form, id: string ) => {
   })
 }
 
-
+export const deleteTransaction = async (id: number) => {
+  return await api.delete(`transactions/${id}`, {
+    params: {
+      id,
+    },
+  })
+}

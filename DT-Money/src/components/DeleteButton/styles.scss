@@ -1,0 +1,8 @@
+.delete-button {
+  background-color: $_red-500;
+  margin-top: 1.5rem;
+  &:hover {
+    background: $_red-700;
+    transition: background-color 0.2s;
+  }
+}

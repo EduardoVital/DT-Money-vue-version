@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { getTransactions, putTransactions, editTransaction } from "../../src/services/transactions/index"
+import { getTransactions, putTransactions, editTransaction, deleteTransaction } from "../../src/services/transactions/index"
 import { Table, Form, SummaryData } from '@/types'
 import router from '@/router';
 
@@ -11,7 +11,8 @@ export const useTransactions = defineStore({
       income: 0 as number,
       outcome: 0 as number,
       total: 0 as number,
-    }
+    },
+    checkedItems: [] as number[],
   }),
   actions: {
     getTransactionsData(): void {
@@ -31,7 +32,6 @@ export const useTransactions = defineStore({
     },
     editTransaction(form: Form, id: string) {
       editTransaction(form, id).then(response => {
-        console.log(response)
         const status = response?.status;
         if (status === 200) {
           this.getTransactionsData();
@@ -59,9 +59,21 @@ export const useTransactions = defineStore({
         },
       )
     },
+    deleteTransactions(id: number) {
+      deleteTransaction(id).then(response => {
+        const status = response?.status;
+        if (status === 200) {
+          this.getTransactionsData();
+        }
+      })
+    },
+    setCheckedItems(items: number[]) {
+      this.checkedItems = items
+    },
   },
   getters: {
     getTableData: (state) => state.tableData,
-    getSummaryData: (state) => state.summary
+    getSummaryData: (state) => state.summary,
+    getCheckedItems: (state) => state.checkedItems,
   }
 })

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { PencilSquareIcon } from "@heroicons/vue/24/solid"
 import { dateFormatter, priceFormatter } from "../../../utils/formatters"
 import { ref, onMounted, watch, computed } from 'vue';
 import type { Ref } from 'vue';
@@ -21,6 +22,7 @@ watch(
   isSelectedAll,
   () => {
     isCheckedAll.value = isSelectedAll.value.length === tableData.value.length
+    transactions.setCheckedItems(isSelectedAll.value)
   },
   { deep: true },
 );
@@ -56,10 +58,11 @@ const editTransaction = (id: number) => {
           <th>Valor</th>
           <th>Tipo</th>
           <th>Data</th>
+          <th></th>
         </tr>
       </thead>
       <tbody v-for="transactions in tableData" :key="transactions.id" >
-        <tr @click="editTransaction(transactions.id)">
+        <tr>
           <td><input type="checkbox" v-model="isSelectedAll" :value="transactions.id"></td>
           <td>{{transactions.description}}</td>
           <td :class="typeOfTransactions(transactions.type)">
@@ -67,6 +70,7 @@ const editTransaction = (id: number) => {
             {{priceFormatter.format(transactions.price)}}</td>
           <td>{{transactions.category}}</td>
           <td>{{dateFormatter.format(new Date(transactions.createdAt))}}</td>
+          <td @click="editTransaction(transactions.id)"><Pencil-square-icon class="transactions-container__edit-icon"/></td>
         </tr>
       </tbody>
     </table>
