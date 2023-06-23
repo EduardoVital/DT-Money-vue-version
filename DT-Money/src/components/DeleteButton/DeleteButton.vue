@@ -6,13 +6,13 @@ const transactions = useTransactions();
 
 const checkedItems = computed(() => transactions.getCheckedItems)
 
-const handleDeleteTransactions = (id: number) => {
+const handleDeleteTransactions = (id: number []) => {
   transactions.deleteTransactions(id);
 }
 </script>
 
 <template>
-  <button v-show="checkedItems.length" class="delete-button" @click="handleDeleteTransactions(checkedItems[0])">
+  <button v-show="checkedItems.length" class="delete-button" @click="handleDeleteTransactions(checkedItems)">
       Deletar
   </button>
 </template>

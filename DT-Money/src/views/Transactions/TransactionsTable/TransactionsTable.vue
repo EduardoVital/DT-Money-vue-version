@@ -27,6 +27,14 @@ watch(
   { deep: true },
 );
 
+watch(
+  tableData,
+  () => {
+    isSelectedAll.value = []
+  },
+  { deep: true }
+)
+
 const typeOfTransactions = (type: string) => {
   return type === "income" ? "transactions-container__table--income" : "transactions-container__table--outcome"
 }

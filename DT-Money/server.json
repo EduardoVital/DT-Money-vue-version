@@ -9,59 +9,27 @@
       "createdAt": "2022-07-29T19:36:44.505Z"
     },
     {
-      "id": 2,
-      "description": "Hambúrguer",
+      "description": "Camiseta de futebol",
+      "price": 25,
+      "category": "Compras",
       "type": "outcome",
-      "category": "Alimentação",
-      "price": 50,
-      "createdAt": "2022-07-29T19:30:44.505Z"
-    },
-    {
-      "description": "Freela",
-      "price": 10000,
-      "category": "Projetos",
-      "type": "income",
-      "createdAt": "2023-01-20T01:27:08.779Z",
-      "id": 4
-    },
-    {
-      "description": "Passagem aérea",
-      "price": 5000,
-      "category": "Viagem",
-      "type": "outcome",
-      "createdAt": "2023-01-21T15:25:33.293Z",
-      "id": 5
-    },
-    {
-      "description": "Bolo",
-      "price": 10,
-      "category": "Comida",
-      "type": "outcome",
-      "createdAt": "2023-06-09T13:33:03.871Z",
-      "id": 6
-    },
-    {
-      "description": "Freela",
-      "price": 10000,
-      "category": "Trabalho",
-      "type": "income",
-      "createdAt": "2023-06-09T13:38:12.665Z",
-      "id": 7
-    },
-    {
-      "description": "Freela",
-      "price": 10000,
-      "category": "Trabalho",
-      "type": "income",
-      "createdAt": "2023-06-09T13:38:35.281Z",
+      "createdAt": "2023-06-23T20:28:23.910Z",
       "id": 8
     },
     {
-      "description": "Crossfit",
-      "price": 210,
-      "category": "Academia",
+      "description": "Apartamento",
+      "price": 25000000,
+      "category": "Imóvel",
+      "type": "income",
+      "createdAt": "2023-06-23T20:31:26.902Z",
+      "id": 9
+    },
+    {
+      "description": "Apartamento",
+      "price": 15000000,
+      "category": "Imóvel",
       "type": "outcome",
-      "createdAt": "2023-06-13T18:53:51.238Z",
+      "createdAt": "2023-06-23T20:31:50.598Z",
       "id": 10
     }
   ]

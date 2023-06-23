@@ -59,12 +59,14 @@ export const useTransactions = defineStore({
         },
       )
     },
-    deleteTransactions(id: number) {
-      deleteTransaction(id).then(response => {
-        const status = response?.status;
-        if (status === 200) {
-          this.getTransactionsData();
-        }
+    deleteTransactions(id: number []) {
+      id.forEach((id) => {
+        deleteTransaction(id).then(response => {
+          const status = response?.status;
+          if (status === 200) {
+            this.getTransactionsData();
+          }
+        })
       })
     },
     setCheckedItems(items: number[]) {
